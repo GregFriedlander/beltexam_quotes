@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quote_wall/quote_wall.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div class="header">
+    <a href="/logout">Logout</a>
+    </div>
+    <h1>Welcome {{ request.session.alias }}!</h1>
+    <div class="nonfav">
+        <h3>Quotable Quotes</h3>
+        {% for quote in quotes %}
+        <div class="nonfavquotes">
+            <p>{{ quote.quoted_by }}: {{ quote.message }}</p>
+            <p>Posted by: <a href="/users/{{ quote.creator.id }}">{{quote.creator.alias}}</a></p>
+            <form action="/addfavorite/{{ quote.id }}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Add To My List">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="fav">
+        <h3>Your Favorites:</h3>
+        {% for quote in fav_quotes %}
+        <div class="favquotes">
+            <p>{{ quote.quoted_by }}: {{ quote.message }}</p>
+            <p>Posted by: <a href="/users/{{ quote.creator.id }}">{{quote.creator.alias}}</a></p>
+            <form action="/removefavorite/{{ quote.id }}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Remove From My List">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif%}
+    <div>
+        <form action="/processquote" method="POST">
+            {% csrf_token %}
+            <h4>Contribute a Quote:</h4>
+            <table>
+            <tr>
+                <td>Quoted By:</td>
+                <td><input type="text" name="quoted_by"></td>
+            </tr>
+            <tr>
+                <td>Message:</td>
+                <td><input class="messageinput" type="textarea" name="message"></td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="creator" value="{{ request.session.id }}"></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

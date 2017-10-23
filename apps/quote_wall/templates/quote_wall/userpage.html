@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes User Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quote_wall/quote_wall.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div class="header">
+    <a href="/homepage">Dashboard</a>
+    <a href="/logout">Logout</a>
+    </div>
+    <h3>Posts by {{ user.alias }}</h3>
+    
+    <h3>Count {{ quotes.count }}</h3>
+    <br>
+    {% for quote in quotes %}
+    <h5 class="redname">{{ quote.quoted_by }}:</h5>
+    <p>{{ quote.message }}</p>
+    {% endfor %}
+</body>
+</html>

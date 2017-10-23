@@ -1,0 +1,42 @@
+.nonfav {
+    display: inline-block;
+    border: 1px solid black;
+    overflow: scroll;
+    padding: 5px;
+    width: 300px;
+    height: 500px;
+}
+.nonfavquotes {
+    border: 1px solid blue;
+    padding: 5px;
+    margin-top: 5px;
+}
+.fav {
+    display: inline-block;
+    border: 1px solid black;
+    overflow: scroll;
+    padding: 5px;
+    width: 300px;
+    height: 500px;
+    vertical-align: top;
+    margin-left: 20px;
+}
+.favquotes {
+    border: 1px solid blue;
+    padding: 5px;
+    margin-top: 5px;
+}
+.messageinput {
+    width: 300px;
+    height: 75px;
+}
+td {
+    vertical-align: top;
+}
+
+.header {
+    text-align: right;
+}
+.redname {
+    color: red;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes Login and Registration</title>
+</head>
+<body>
+    <h1>Welcome to "My Favotie Quotes"</h1>
+    <div class="registration">
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif%}
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <h4>Registration</h4>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Alias:</td>
+                    <td><input type="text" name="alias"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Confirm pw:</td>
+                    <td><input type="password" name="password_confirm"></td>
+                </tr>
+                <tr>
+                    <td>Birthdate:</td>
+                    <td><input type="date" name="birthdate"></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input type="submit" value="Register"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="login">
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <h4>Login</h4>
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input type="submit" value="Login"></td>
+                </tr>
+            </table>
+        </form>
+    </div>  
+</body>
+</html>
